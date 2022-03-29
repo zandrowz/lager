@@ -12,7 +12,7 @@ function StockList() {
         .then(result => setProducts(result.data));
     }, []);
 
-    const list = products.map((product, index) => <Text key={index}>{ product.name } - { product.stock } st</Text>);
+    const list = products.map((product, index) => <Text style={{color: '#eed2cc', fontSize: 16 }} key={index}>{ product.name } - { product.stock } st</Text>);
 
     return (
         <View style={styles.container}>
