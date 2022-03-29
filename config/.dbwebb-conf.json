@@ -1,4 +1,4 @@
 {
-    "expo": "",
-    "github": "https://github.com/dbwebb-se/webapp-v4.git"
+    "expo": "exp://exp.host/@zandrowz/lager?release-channel=default",
+    "github": "https://github.com/zandrowz/lager"
 }

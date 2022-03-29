@@ -51,5 +51,4 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1.5,
         borderBottomColor: "#eed2cc",
     }
-
 });
