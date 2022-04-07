@@ -1,36 +1,67 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View, AppRegistry, } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Stock from './components/Stock.tsx';
-import warehouse from './assets/warehouse.jpg';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
+//@ts-ignore
+import Home from "./components/Home.tsx";
+//@ts-ignore
+import Pick from "./components/Pick.tsx";
 
-// 93470428f3379cb37496d818539d9134
-
+const Tab = createBottomTabNavigator();
+const routeIcons = {
+    "Lager": "home",
+    "Plock": "list",
+};
 
 export default function App() {
-    return (
+    const [products, setProducts] = useState([]);
+
+  return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <Text style={{color: '#e8998d', fontSize: 42, fontFamily: 'sans-serif-medium'}}>Lager-Appen</Text>
-        <Text style={{color: '#e8998d', fontSize: 32, fontFamily: 'sans-serif-medium', marginBottom: 20}}>Infinity Warehouses</Text>
-        <Image source={warehouse} style={{ width: 320, height: 240 }} />
-        <Stock />
-        <StatusBar style="auto" />
-        </View>
+      <NavigationContainer>
+        <Tab.Navigator screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+            let iconName = routeIcons[route.name] || "alert";
+
+            if (route.name === "Lager") {
+                iconName = "home";
+            } else if (route.name === "Plock")  {
+                iconName = "list";
+            } else {
+                iconName = "alert";
+            }
+
+            return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: '#DF406A',
+            tabBarInactiveTintColor: 'gray',
+            headerShown: false
+        })}
+        >
+          <Tab.Screen name="Lager">
+          {() => <Home products={products} setProducts={setProducts} />}
+          </Tab.Screen>
+          <Tab.Screen name="Plock">
+              {() => <Pick setProducts={setProducts} />}
+          </Tab.Screen>
+        </Tab.Navigator>
+      </NavigationContainer>
+      <StatusBar style="auto" />
     </SafeAreaView>
-    );
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eed2cc',
-    paddingLeft: 12,
-    paddingRight: 12,
-    alignItems: "center",
-    marginBottom: 20,
+    // backgroundColor: '#eee',
+    // paddingLeft: 12,
+    // paddingRight: 12,
+    // marginBottom: 20,
+    // color: '#fff',
   },
 });
-
-AppRegistry.registerComponent('App', () => App);

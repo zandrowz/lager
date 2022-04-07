@@ -1,54 +1,35 @@
 import { useState, useEffect } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import config from "../config/config.json";
+import { Text, View} from 'react-native';
+import { Base, Typography } from '../styles';
+import productModel from "../models/products.ts";
 
 
-function StockList() {
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        fetch(`${config.base_url}/products?api_key=${config.api_key}`)
-        .then(response => response.json())
-        .then(result => setProducts(result.data));
+function StockList({products, setProducts}) {
+    useEffect(async () => {
+        setProducts(await productModel.getProducts());
     }, []);
 
-    const list = products.map((product, index) => <Text style={{color: '#eed2cc', fontSize: 16 }} key={index}>{ product.name } - { product.stock } st</Text>);
+    const list = products.map((product, index) => {
+        return <Text
+                key={index}
+                style={Base.products}
+                >
+                    { product.name } ({ product.stock } st)
+                </Text>
+    });
 
     return (
-        <View style={styles.container}>
-        {list}
+        <View style={Base.container}>
+            {list}
         </View>
     );
 }
 
-export default function Stock() {
+export default function Stock({products, setProducts}) {
     return (
-
-        <View style={styles.container}>
-        <Text style={styles.row}>Lagerförteckning</Text>
-
-        <StockList/>
+        <View style={Base.container2}>
+            <Text style={Typography.header3}>Lagerförteckning</Text>
+            <StockList products={products} setProducts={setProducts} />
         </View>
-
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        color: '#fff',
-        marginTop: 10,
-        padding: 8,
-        borderRadius: 8,
-        backgroundColor: "#e8998d",
-    },
-    row: {
-        alignItems: "center",
-        fontSize: 24,
-        color: '#eed2cc',
-        marginBottom: 6,
-        justifyContent: "center",
-        borderBottomWidth: 1.5,
-        borderBottomColor: "#eed2cc",
-    }
-});
