@@ -29,14 +29,28 @@ export const header3 = {
     padding: 10,
 };
 
+export const header4 = {
+    fontSize: 20,
+    color: 'black',
+    // fontWeight: "bold",
+    padding: 10,
+};
 export const normal = {
     fontSize: 20,
     color: 'black',
 };
 
 export const normal2 = {
-    fontSize: 20,
+    fontSize: 16,
     color: 'black',
-    fontWeight: "bold",
+    // fontWeight: "bold",
     marginTop: 10,
 };
+
+export const label = {
+    fontSize: 20,
+    fontWeight: "bold",
+    margin: 2,
+    marginBottom: 5,
+};
+

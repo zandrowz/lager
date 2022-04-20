@@ -13,6 +13,8 @@ export default function OrderList({ route, navigation }) {
 
     async function reloadOrders() {
         setAllOrders(await orderModel.getOrders());
+        navigation.navigate("List", { reload: false });
+        console.log("Inne i reloadOrders");
     }
 
     useEffect(() => {

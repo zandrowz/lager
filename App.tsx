@@ -10,11 +10,14 @@ import { Ionicons } from '@expo/vector-icons';
 import Home from "./components/Home.tsx";
 //@ts-ignore
 import Pick from "./components/Pick.tsx";
+//@ts-ignore
+import Deliveries from "./components/Deliveries.tsx";
 
 const Tab = createBottomTabNavigator();
 const routeIcons = {
     "Lager": "home",
     "Plock": "list",
+    "Inleveranser": "car",
 };
 
 export default function App() {
@@ -31,6 +34,8 @@ export default function App() {
                 iconName = "home";
             } else if (route.name === "Plock")  {
                 iconName = "list";
+            } else if (route.name === "Inleveranser")  {
+                iconName = "car";
             } else {
                 iconName = "alert";
             }
@@ -47,6 +52,10 @@ export default function App() {
           </Tab.Screen>
           <Tab.Screen name="Plock">
               {() => <Pick setProducts={setProducts} />}
+          </Tab.Screen>
+          {/* <Tab.Screen name="Inleveranser" component={Deliveries} /> */}
+          <Tab.Screen name="Inleveranser">
+              {() => <Deliveries products={products} setProducts={setProducts} />}
           </Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
