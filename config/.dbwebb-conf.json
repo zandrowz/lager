@@ -1,4 +1,4 @@
 {
-    "expo": "exp://exp.host/@zandrowz/lager?release-channel=default",
+    "expo": "https://expo.dev/@zandrowz/lager?serviceType=classic&distribution=expo-go",
     "github": "https://github.com/zandrowz/lager"
 }
