@@ -2,8 +2,9 @@ import config from "../config/config.json";
 
 import products from "./products";
 import Delivery from "../interfaces/delivery";
+import DeliveryForm from "../components/DeliveryForm";
 
-const deliveries = {
+const delivery = {
     getDeliveries: async function getDeliveries() {
         const response = await fetch(`${config.base_url}/deliveries?api_key=${config.api_key}`);
         const result = await response.json();
@@ -26,4 +27,4 @@ const deliveries = {
     },
 };
 
-export default deliveries;
+export default delivery;

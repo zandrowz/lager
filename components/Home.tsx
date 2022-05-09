@@ -7,6 +7,7 @@ import { Base, Typography } from '../styles';
 import Stock from './Stock.tsx';
 //@ts-ignore
 import warehouse from '../assets/warehouse.jpg';
+//@ts-ignore
 import box from '../assets/box.png';
 
 export default function Home({route, products, setProducts}) {

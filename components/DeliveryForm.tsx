@@ -7,7 +7,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
 
 import productModel from "../models/products";
-import deliveryModel from "../models/deliveries";
+import deliveryModel from "../models/delivery";
 
 import Delivery from '../interfaces/delivery';
 import Product from '../interfaces/product';

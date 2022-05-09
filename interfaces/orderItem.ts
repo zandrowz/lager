@@ -1,6 +1,7 @@
 
 export default interface OrderItem {
     product_id: number,
+    order_id: number,
     amount: number,
     article_number: string,
     name: string,
@@ -8,5 +9,5 @@ export default interface OrderItem {
     specifiers: string,
     stock: number,
     location: string,
-    price: number,
+    price: number
 };

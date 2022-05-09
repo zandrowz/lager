@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Text, View} from 'react-native';
 import { Base, Typography } from '../styles';
-import productModel from "../models/products.ts";
+import productModel from "../models/products";
 
 
 function StockList({products, setProducts}) {

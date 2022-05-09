@@ -21,11 +21,12 @@ export const header2 = {
 export const header3 = {
     fontSize: 28,
     marginBottom: 28,
-    color: '#F5F3E7',
+    fontWeight: "bold",
+    color: '#DF406A',
     borderWidth: 1,
     borderRadius: 15,
     borderColor: "#fff",
-    backgroundColor: "#DF406A",
+    // backgroundColor: "#DF406A",
     padding: 10,
 };
 
@@ -53,4 +54,9 @@ export const label = {
     margin: 2,
     marginBottom: 5,
 };
+
+export const buttonText = {
+    color: '#F5F3E7',
+    fontSize: 20,
+}
 

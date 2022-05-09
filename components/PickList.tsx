@@ -8,12 +8,8 @@ export default function PickList({ route, navigation, setProducts }) {
     const { order } = route.params;
     const [productsList, setProductsList] = useState([]);
 
-    useEffect(async () => {
-        // fetch(`${config.base_url}/orders?api_key=${config.api_key}`)
-        //   .then(response => response.json())
+    useEffect(async() => {
         setProductsList(await productModel.getProducts());
-        // await orderModel.getOrders()
-        //   .then(result => setAllOrders(result.data));
     }, []);
 
     async function pick() {
@@ -22,21 +18,21 @@ export default function PickList({ route, navigation, setProducts }) {
         navigation.navigate("List", {reload: true});
     }
 
-    // let allInStock = true;
+    let allInStock = true;
 
-    // const orderItemsList = order.order_items.map((item, index) => {
-    //     if (item.amount > item.stock) {
-    //         allInStock = false;
-    //     }
-    const productsHash = productsList.reduce((hash, current) => ({ ...hash,
-        [current.id]: current.stock}), {});
+    const orderItemsList = order.order_items.map((item, index) => {
+        if (item.amount > item.stock) {
+            allInStock = false;
+        }
+    // const productsHash = productsList.reduce((hash, current) => ({ ...hash,
+    //     [current.id]: current.stock}), {});
     
-        let allInStock = true;
+    //     let allInStock = true;
     
-        const orderItemsList = order.order_items.map((item, index) => {
-            if (productsHash[item.product_id] < item.amount) {
-                allInStock = false;
-            }
+    //     const orderItemsList = order.order_items.map((item, index) => {
+    //         if (productsHash[item.product_id] < item.amount) {
+    //             allInStock = false;
+    //         }
         return <Text
                 key={index}
                 >
@@ -56,7 +52,7 @@ export default function PickList({ route, navigation, setProducts }) {
             <Text style={Typography.normal}> {orderItemsList} </Text>
 
             {allInStock ? 
-                <Button title="Plocka order" color="#DF406A" onPress={pick} />
+                <Button title="Plocka order" color="#e26b8b" onPress={pick} />
             :   <Text style={{ fontSize: 20, color: "red", marginTop: 10 }}>OBS! Ordern går inte att packa, då varor saknas.</Text>
             }
         </View>

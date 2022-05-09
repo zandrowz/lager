@@ -39,10 +39,6 @@ export const container2 = {
     // color: '#F5F3E7',
 };
 
-export const button = {
-    color: "black",
-}
-
 export const input = {
     fontSize: 20,
     marginBottom: 28,
@@ -50,5 +46,18 @@ export const input = {
     padding: 10,
     borderColor: "#ccc",
     borderRadius: 3,
+};
+
+export const button = {
+    alignItems:"center",
+    justifyContent:"center",
+    paddingVertical:12,
+    paddingHorizontal:32,
+    borderRadius:4,
+    elevation:3,
+    backgroundColor: "#e26b8b",
+    color:"white",
+    marginHorizontal:"5%",
+    marginTop:20
 };
 

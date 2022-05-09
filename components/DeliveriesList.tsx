@@ -1,29 +1,42 @@
 //Listar upp alla leveranser som finns + knapp till formulär
 import { useState, useEffect } from 'react';
-import { Text, View, Button, ScrollView } from 'react-native';
+import { Text, View, Pressable, ScrollView } from 'react-native';
 import { Forms, Base, Typography } from '../styles';
+import { Picker } from '@react-native-picker/picker';
 
-import deliveryModel from "../models/deliveries.ts";
+import deliveryModel from "../models/delivery";
 import Delivery from '../interfaces/delivery'
 
-export default function DeliveriesList( { navigation, deliveries, setDeliveries }) {
-    // const { reload } = route.params || false;
-    // const [deliveries, setAllDeliveries] = useState([]);
+export default function DeliveriesList( { navigation, route}) {
+    const { reload } = route.params || false;
+    const [allDeliveries, setAllDeliveries] = useState([]);
 
-    // useEffect(async () => {
-    //     setAllDeliveries(await deliveryModel.getDeliveries());
-    // }, []);
+    if (reload) {
+        reloadDeliveries();
+    }
 
-    // useEffect(async () => {
-    //     setAllDeliveries(await deliveryModel.getDeliveries());
-    // }, []);
+    async function reloadDeliveries() {
+        setAllDeliveries(await deliveryModel.getDeliveries());
+    }
+
     useEffect(() => {
-        (async () => {
-            setDeliveries(await deliveryModel.getDeliveries());
-        })();
+        reloadDeliveries();
     }, []);
 
-    const listOfDeliveries = deliveries
+    // useEffect(async () => {
+    //     setAllDeliveries(await deliveryModel.getDeliveries());
+    // }, []);
+
+    // useEffect(async () => {
+    //     setAllDeliveries(await deliveryModel.getDeliveries());
+    // }, []);
+    // useEffect(() => {
+    //     (async () => {
+    //         setDeliveries(await deliveryModel.getDeliveries());
+    //     })();
+    // }, []);
+
+    const listOfDeliveries = allDeliveries
     .map((delivery, index) => {
         console.log("Lista med inleveranser");
         return <View key={index} style={Forms.input}>
@@ -43,13 +56,19 @@ export default function DeliveriesList( { navigation, deliveries, setDeliveries 
             <ScrollView>
             {listOfDeliveries}
             </ScrollView>
-            <Button
+
+            <Pressable style={Base.button} onPress={() => {
+                    navigation.navigate('Form');
+                }}>
+                <Text style={Typography.buttonText}>Skapa ny inleverans</Text>
+            </Pressable>
+            {/* <Button
                 title="Skapa ny inleverans"
                 color="#F8D0DB"
                 onPress={() => {
                     navigation.navigate('Form');
                 }}
-            />
+            /> */}
         </View>
     );
 

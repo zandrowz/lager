@@ -1,25 +1,43 @@
+import config from "../config/config.json";
 import { useState, useEffect } from 'react';
 import { View, Text, Button } from "react-native";
 import { Base, Typography } from '../styles';
-import orderModel from "../models/orders.ts";
+import orderModel from "../models/orders";
 
+// export default function OrderList({ route, navigation }) {
+//     const { reload } = route.params || false;
+//     const [allOrders, setAllOrders] = useState([]);
+
+//     if (reload) {
+//         reloadOrders();
+//     }
+
+//     async function reloadOrders() {
+//         setAllOrders(await orderModel.getOrders());
+//         navigation.navigate("List", { reload: false });
+//         console.log("Inne i reloadOrders");
+//     }
+
+//     useEffect(() => {
+//         reloadOrders();
+//     }, []);
+
+    
 export default function OrderList({ route, navigation }) {
-    const { reload } = route.params || false;
     const [allOrders, setAllOrders] = useState([]);
+    const { reload } = route.params || false;
 
     if (reload) {
         reloadOrders();
     }
 
+    useEffect(async () => {
+        await reloadOrders();
+    }, []);
+
     async function reloadOrders() {
         setAllOrders(await orderModel.getOrders());
-        navigation.navigate("List", { reload: false });
-        console.log("Inne i reloadOrders");
     }
-
-    useEffect(() => {
-        reloadOrders();
-    }, []);
 
     const listOfOrders = allOrders
         .filter(order => order.status === "Ny")
@@ -27,7 +45,7 @@ export default function OrderList({ route, navigation }) {
             return <Button
                 title={order.name}
                 key={index}
-                color="#F8D0DB"
+                color="#e26b8b"
                 onPress={() => {
                     navigation.navigate('Details', {
                         order: order
