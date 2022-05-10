@@ -3,9 +3,6 @@ import config from "../config/config.json";
 import storage from "./storage";
 
 const auth = {
-    // loggedIn: async function loggedIn() {
-    //     return false;
-    // },
     loggedIn: async function loggedIn() {
         const token = await storage.readToken();
         const twentyFourHours = 1000 * 60 * 60 * 24;

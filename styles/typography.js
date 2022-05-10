@@ -20,7 +20,7 @@ export const header2 = {
 
 export const header3 = {
     fontSize: 28,
-    marginBottom: 28,
+    marginBottom: 15,
     fontWeight: "bold",
     color: '#DF406A',
     borderWidth: 1,
@@ -33,8 +33,9 @@ export const header3 = {
 export const header4 = {
     fontSize: 20,
     color: 'black',
-    // fontWeight: "bold",
-    padding: 10,
+    fontWeight: "bold",
+    marginBottom: 5,
+    // padding: 10,
 };
 export const normal = {
     fontSize: 20,

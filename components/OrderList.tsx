@@ -29,15 +29,17 @@ export default function OrderList({ route, navigation }) {
 
     if (reload) {
         reloadOrders();
+        route.params = false;
     }
-
-    useEffect(async () => {
-        await reloadOrders();
-    }, []);
 
     async function reloadOrders() {
         setAllOrders(await orderModel.getOrders());
     }
+
+    useEffect(() => {
+        reloadOrders();
+    }, []);
+
 
     const listOfOrders = allOrders
         .filter(order => order.status === "Ny")

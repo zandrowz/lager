@@ -6,10 +6,23 @@ import { Base, Typography } from '../styles';
 
 export default function PickList({ route, navigation, setProducts }) {
     const { order } = route.params;
-    const [productsList, setProductsList] = useState([]);
+    const { reload } = route.params || false;
+    const [productsList, setProductsLists] = useState([]);
 
-    useEffect(async() => {
-        setProductsList(await productModel.getProducts());
+    // useEffect(async() => {
+    //     setProductsList(await productModel.getProducts());
+    // }, []);
+    if (reload) {
+        reloadProducts();
+        route.params = false;
+    }
+
+    async function reloadProducts() {
+        setProductsLists(await productModel.getProducts());
+    }
+
+    useEffect(() => {
+        reloadProducts();
     }, []);
 
     async function pick() {

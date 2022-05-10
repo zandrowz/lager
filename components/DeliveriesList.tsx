@@ -13,6 +13,7 @@ export default function DeliveriesList( { navigation, route}) {
 
     if (reload) {
         reloadDeliveries();
+        route.params = false;
     }
 
     async function reloadDeliveries() {

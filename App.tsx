@@ -18,7 +18,7 @@ import Invoices from "./components/Invoices.tsx";
 //@ts-ignore
 import Auth from "./components/auth/Auth";
 //@ts-ignore
-import Shipping from "./components/shipping/Shipping.tsx";
+import Ship from "./components/ship/Ship.tsx";
 
 import authModel from "./models/auth";
 
@@ -80,6 +80,7 @@ export default function App() {
           <Tab.Screen name="Inleveranser">
               {() => <Deliveries products={products} setProducts={setProducts} />}
           </Tab.Screen>
+          <Tab.Screen name="Leverans" component={Ship} />
           {isLoggedIn ?
             <Tab.Screen name="Faktura">
                 {() => <Invoices setIsLoggedIn={setIsLoggedIn} />}
