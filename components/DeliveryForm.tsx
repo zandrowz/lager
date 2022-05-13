@@ -11,6 +11,7 @@ import deliveryModel from "../models/delivery";
 
 import Delivery from '../interfaces/delivery';
 import Product from '../interfaces/product';
+import { showMessage } from 'react-native-flash-message';
 
 function DateDropDown(props) {
     const [dropDownDate, setDropDownDate] = useState<Date>(new Date());
@@ -34,6 +35,7 @@ function DateDropDown(props) {
                         props.setDelivery({
                             ...props.delivery,
                             delivery_date: date.toLocaleDateString('se-SV'),
+                            testID: "date-field"
                         });
                         }
                         setShow(false);
@@ -75,8 +77,7 @@ function ProductDropDown(props) {
 export default function DeliveryForm({ route, navigation, products, setDeliveries, setProducts }) {
     const [currentProduct, setCurrentProduct] = useState<Partial<Product>>({});
     const [delivery, setDelivery] = useState<Partial<Delivery>>({});
-    console.log(delivery);
-    
+    // console.log(delivery);
 
     async function addDelivery() {
         await deliveryModel.addDelivery(delivery);
@@ -93,9 +94,6 @@ export default function DeliveryForm({ route, navigation, products, setDeliverie
 
         navigation.navigate("List", { reload: true });
     }
-        // TODO
-        //Skicka delivery till deliver model
-        //öka antalet produkter i lagret för vald produkt (använda produktmodellen)
 
     return (
         <ScrollView style={Base.base}>
@@ -142,7 +140,15 @@ export default function DeliveryForm({ route, navigation, products, setDeliverie
                 title="Gör inleverans"
                 color="#F8D0DB"
                 onPress={() => {
-                    addDelivery();
+                    if (!delivery.amount || !delivery.comment || !delivery.delivery_date) {
+                        showMessage({
+                            message: "Vänligen fyll i alla fält",
+                            description: "Kontrollera att du fyllt i alla fält",
+                            type: "info"
+                        })
+                    } else {
+                        addDelivery();
+                    }
                 }}
             />
         </ScrollView>

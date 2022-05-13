@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Platform, View, ScrollView, Text, TextInput, Button } from "react-native";
+import { Platform, View, ScrollView, Text, TextInput, Button, Pressable } from "react-native";
 import { Base, Typography, Forms } from '../styles';
 
 
@@ -99,22 +99,28 @@ export default function InvoiceForm({ navigation }) {
             <Text style={Typography.header3}>Ny faktura</Text>
 
             <Text style={Typography.label}>Order</Text>
+            <View style={Forms.picker}>
             <OrderDropDown
                 invoice={invoice}
                 setInvoice={setInvoice}
             />
-            <Text style={Typography.label}>Faktura</Text>
+            </View>
+            <Text style={Typography.label}>Faktureringsdatum</Text>
             <DateDropDown
             invoice={invoice}
             setInvoice={setInvoice}
         />
-
-        <Button
+        <Pressable style={Base.button} onPress={() => {
+            createInvoice();
+        }}>
+            <Text style={Typography.buttonText}>Skapa faktura</Text>
+        </Pressable>
+        {/* <Button
             title="Skapa faktura"
             onPress={() => {
                 createInvoice();
             }}
-        />
+        /> */}
         </ScrollView>
     )
 }

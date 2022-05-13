@@ -33,7 +33,7 @@ export default function InvoicesList({ route, navigation, setIsLoggedIn }) {
 
     const invoicesRows = allInvoices.map((invoice, index) => {
         return (<DataTable.Row key={index}>
-            <DataTable.Cell>{invoice.name}</DataTable.Cell>
+            <DataTable.Cell style={{flex: 1.7}}>{invoice.name}</DataTable.Cell>
             <DataTable.Cell>{invoice.total_price}</DataTable.Cell>
             <DataTable.Cell>{invoice.due_date}</DataTable.Cell>
         </DataTable.Row>
@@ -47,7 +47,7 @@ export default function InvoicesList({ route, navigation, setIsLoggedIn }) {
 
             <DataTable>
                 <DataTable.Header>
-                    <DataTable.Title>Namn</DataTable.Title>
+                    <DataTable.Title style={{flex: 1.7 }}>Namn</DataTable.Title>
                     <DataTable.Title>Pris</DataTable.Title>
                     <DataTable.Title>Förfallodatum</DataTable.Title>
                 </DataTable.Header>

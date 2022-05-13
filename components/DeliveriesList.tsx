@@ -1,6 +1,6 @@
 //Listar upp alla leveranser som finns + knapp till formulär
 import { useState, useEffect } from 'react';
-import { Text, View, Pressable, ScrollView } from 'react-native';
+import { Text, View, Button, Pressable, ScrollView } from 'react-native';
 import { Forms, Base, Typography } from '../styles';
 import { Picker } from '@react-native-picker/picker';
 
@@ -58,18 +58,19 @@ export default function DeliveriesList( { navigation, route}) {
             {listOfDeliveries}
             </ScrollView>
 
-            <Pressable style={Base.button} onPress={() => {
+            {/* <Pressable style={Base.button} onPress={() => {
                     navigation.navigate('Form');
                 }}>
                 <Text style={Typography.buttonText}>Skapa ny inleverans</Text>
-            </Pressable>
-            {/* <Button
+            </Pressable> */}
+            <Button
                 title="Skapa ny inleverans"
                 color="#F8D0DB"
                 onPress={() => {
                     navigation.navigate('Form');
                 }}
-            /> */}
+                accessibilityLabel={'Skapa inleverans genom att trycka'}
+            />
         </View>
     );
 

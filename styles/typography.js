@@ -3,6 +3,8 @@ import { CurrentRenderContext } from "@react-navigation/core";
 export const header1 = {
     fontSize: 42,
     marginBottom: 28,
+    paddingVertical:12,
+    paddingHorizontal:32,
     color: '#F5E2E4',
     fontFamily: 'sans-serif-medium',
     color: '#F5F3E7',
